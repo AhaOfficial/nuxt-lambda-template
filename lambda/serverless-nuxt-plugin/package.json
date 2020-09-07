@@ -1,0 +1,58 @@
+{
+  "_from": "serverless-nuxt-plugin",
+  "_id": "serverless-nuxt-plugin@1.2.0",
+  "_inBundle": false,
+  "_integrity": "sha512-ljzRelpDgshMfSOubVyU0l6Puks9UPucL5drcP3QjMXyIWnELeZHJDkjfsH5MbF2mHjaCZc//ZNVinYfRRxHdA==",
+  "_location": "/serverless-nuxt-plugin",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "serverless-nuxt-plugin",
+    "name": "serverless-nuxt-plugin",
+    "escapedName": "serverless-nuxt-plugin",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/serverless-nuxt-plugin/-/serverless-nuxt-plugin-1.2.0.tgz",
+  "_shasum": "78014184c73ccf13226be62bca7eed29e756e510",
+  "_spec": "serverless-nuxt-plugin",
+  "_where": "/Users/hm/Desktop/Workspace/a-ha/nuxt-template",
+  "author": {
+    "name": "Changwan Jun",
+    "email": "wan2land@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/wan2land/serverless-nuxt/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "globby": "^11.0.0",
+    "mime-types": "^2.1.24",
+    "ms": "^2.1.2"
+  },
+  "deprecated": false,
+  "description": "Serverless Nuxt Plugin",
+  "gitHead": "bd56563ce7ca9b11bd12945e7f10e075690df858",
+  "homepage": "https://github.com/wan2land/serverless-nuxt#readme",
+  "keywords": [
+    "serverless",
+    "nuxt",
+    "vue",
+    "typescript"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "name": "serverless-nuxt-plugin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wan2land/serverless-nuxt.git"
+  },
+  "version": "1.2.0"
+}

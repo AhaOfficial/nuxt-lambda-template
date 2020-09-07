@@ -1,0 +1,137 @@
+{
+  "Nuxt Page": {
+    "scope": "vue",
+    "prefix": [
+      "nuxt-page",
+      "np"
+    ],
+    "body": [
+      "<template>",
+      "  <div>",
+      "    <!-- 여기에 HTML 태그를 작성합니다. -->",
+      "  </div>",
+      "</template>",
+      "",
+      "<script lang=\"ts\">",
+      "import * as Core from '~/core'",
+      "import { VueAPI } from '~/core'",
+      "export default VueAPI.defineComponent({",
+      "  setup(props, context) {",
+      "    // 여기에 컴포넌트 로직을 작성합니다.",
+      "  }",
+      "})",
+      "</script>",
+      ""
+    ],
+    "description": "넉스트 페이지를 생성합니다."
+  },
+  "Nuxt Component": {
+    "scope": "vue",
+    "prefix": [
+      "nuxt-component",
+      "nc"
+    ],
+    "body": [
+      "<template>",
+      "  <div>",
+      "    <!-- 여기에 HTML 태그를 작성합니다. -->",
+      "  </div>",
+      "</template>",
+      "",
+      "<script lang=\"ts\">",
+      "import * as Core from '~/core'",
+      "import { VueAPI } from '~/core'",
+      "export default VueAPI.defineComponent({",
+      "  name: '',",
+      "  props: {},",
+      "  setup(props, context) {",
+      "    // 여기에 컴포넌트 로직을 작성합니다.",
+      "  }",
+      "})",
+      "</script>",
+      "",
+      "<style lang=\"scss\" scoped>",
+      "// 여기에 컴포넌트 스타일을 작성합니다.",
+      "</style>",
+      ""
+    ],
+    "description": "넉스트 컴포넌트를 생성합니다."
+  },
+  "Nuxt Config": {
+    "scope": "typescript",
+    "prefix": [
+      "nuxt-config",
+      "nc"
+    ],
+    "body": [
+      "import * as Config from './'",
+      "",
+      "/**",
+      " * 어떠한 설정들이 여기에 담깁니다.",
+      " */",
+      "export const SomethingConfig = {",
+      "  \/\/ 여기에 옵션들을 정의합니다.",
+      "} as Config.Interface.IConfig",
+      "",
+    ],
+    "description": "넉스트 설정 파일을 생성합니다. (분할규격)"
+  },
+  "Nuxt Middleware": {
+    "scope": "typescript",
+    "prefix": [
+      "nuxt-middleware",
+      "nm"
+    ],
+    "body": [
+      "import type { Middleware } from '@nuxt/types'",
+      "",
+      "/**",
+      " * 어떠한 작업을 하는 미들웨어입니다.",
+      " * @param context ",
+      " */",
+      "export const middleware: Middleware = context => {",
+      "  const { app, redirect } = context",
+      "  \/\/ * 여기에 코드를 작성합니다.",
+      "  ",
+      "}",
+      "",
+      "export default middleware",
+      "",
+    ],
+    "description": "넉스트 미들웨어를 생성합니다."
+  },
+  "Nuxt Service": {
+    "scope": "typescript,vue",
+    "prefix": [
+      "nuxt-service-network-api",
+      "ns",
+      "service",
+      "api"
+    ],
+    "body": [
+      "\/\/ * API 요청을 사용합니다. ",
+      "\/\/ * Core.useService 에 await 적용도 가능",
+      "Core.useService({",
+      "  action: async ({ service, isClient }) => {",
+      "    \/\/ * 여기 안에서 서비스를 사용해주세요.",
+      "  },",
+      "  exception: async ({ error, service, isClient }) => {",
+      "    \/\/ * 여기 안에서 예외처리를 해주세요.",
+      "  }",
+      "})",
+    ],
+    "description": "넉스트에서 API 서비스를 사용합니다."
+  },
+  "Nuxt Import ": {
+    "scope": "typescript,vue",
+    "prefix": [
+      "nuxt-import",
+      "ni"
+    ],
+    "body": [
+      "import * as Core from '~/core'",
+      "import { VueAPI } from '~/core'",
+    ],
+    "description": "넉스트 프로젝트용 임포트를 불러옵니다."
+  },
+}

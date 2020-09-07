@@ -1,0 +1,26 @@
+# dependencies
+node_modules
+
+# logs
+npm-debug.log
+
+# Nuxt build
+.nuxt
+
+# Nuxt generate
+dist
+
+# Nuxt PWA
+sw.*
+
+# Mac
+.DS_Store
+
+# Etc
+# .vscode
+.qawolf
+
+# Serverless
+.serverless
+.webpackCache
+nuxt.config.js

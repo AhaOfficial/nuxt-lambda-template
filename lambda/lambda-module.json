@@ -1,0 +1,37 @@
+{
+  "exclude": ["canvas", "fsevents"],
+  "include": [
+    "@nuxt/core",
+    "@nuxtjs/gtm",
+    "jsdom",
+    "loader-runner",
+    "terser-webpack-plugin",
+    "worker-farm",
+    "nuxt-start"
+  ],
+  "ignore": [
+    "**/*.map",
+    "**/*.ts",
+    "**/*.d.ts",
+    "**/*.md",
+    "**/*.mdown",
+    "**/*.markdown",
+    "**/LICENSE*",
+    "**/License*",
+    "**/license*",
+    "**/AUTHORS",
+    "**/*.txt",
+    "**/yarn.lock",
+    "**/package-lock.json",
+    "**/test",
+    "**/tests",
+    "**/demo",
+    "**/example",
+    "**/benchmark",
+    "**/benchmarks",
+    "**/docs",
+    "**/Makefile",
+    "**/*.spec.js",
+    "@types"
+  ]
+}

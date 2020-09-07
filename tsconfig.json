@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ES2016",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "lib": [
+      "esnext",
+      "esnext.asynciterable",
+      "dom"
+    ],
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "sourceMap": false,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "importsNotUsedAsValues": "preserve",
+    "paths": {
+      "~/*": [
+        "./client/*"
+      ]
+    },
+    "types": [
+      "@nuxt/types",
+      "@nuxtjs/axios"
+    ]
+  }
+}

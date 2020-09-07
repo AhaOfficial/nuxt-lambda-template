@@ -1,0 +1,97 @@
+# 정의하려는 람다 서비스 명을 명시합니다.
+service: nuxt-lambda
+
+
+# 사용하려는 서비스 제공사 이름을 명시합니다.
+provider:
+  name: aws
+
+  # 개발 중 상황을 명시합니다.
+  # dev 또는 prod 로 명시가 가능합니다.
+  stage: prod
+
+  # 사용할 런타임 정보를 명시합니다.
+  # https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+  runtime: nodejs12.x
+
+  # 배포될 리전 위치를 명시합니다.
+  # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html#Concepts.RegionsAndAvailabilityZones.Availability
+  region: ap-southeast-1
+
+
+# 람다 함수와 관련된 설정들을 명시합니다.
+functions:
+
+  # 생성하려는 람다 함수명을 명시합니다.
+  nuxtLambda:
+
+    # 람다 함수가 최대로 사용할 메모리 용량을 명시합니다.
+    memorySize: 256
+
+    # 최대 몇 초 동안 람다 함수가 실행될 수 있는지를 설정합니다.
+    # 적을 수록 비용이 적게드나, 너무 적게 설정한 경우
+    # 인터넷이 느린 이용자는 아예 응답을 받지 못할 수도 있습니다.
+
+    # 람다 함수는 최대 900초 동안 동작할 수 있습니다.
+    # API GATEWAY는 최대 30초 동안 동작할 수 있습니다.
+    # ALB 는 최대 4000초 동안 동작할 수 있습니다. 
+    timeout: 30
+
+    # 실행할 파일 명과 파일 내 함수명을 명시합니다.
+    handler: lambda/lambda.handler
+
+
+# 서버리스 빌드 & 배포 시 사용할 플러그인을 명시합니다
+plugins:
+
+  # Nuxt 의 정적파일들을 s3 로 업로드 해줍니다.
+  - serverless-nuxt-plugin
+
+  # 백엔드의 설정파일들을 웹팩으로 번들링합니다.
+  - serverless-webpack
+
+  # 람다 함수를 오프라인에서 테스트해볼 수 있게 해줍니다.
+  - serverless-offline
+
+
+# 람다 함수 패키지의 설정들을 명시합니다.
+package:
+  # 해당 람다 함수 패키지를 독립적으로 설정합니다.
+  individually: true
+
+  # 개발용으로만 사용되는 의존 모듈 정보를 제외합니다.
+  excludeDevDependencies: true
+
+  # node_modules 폴더를 제외합니다.
+  # (webpack 에 의해서 필요한 노드모듈만 복제됩니다.)
+  exclude:
+    - node_modules/**
+
+
+# 플러그인 설정 정보들을 명시합니다.
+custom:
+
+  # 웹팩 설정을 명시합니다.
+  webpack:
+    webpackConfig: './lambda/webpack.config.js'
+
+  # 넉스트 설정을 명시합니다.
+  nuxt:
+    # Nuxt 정적 파일을 자동으로 업로드할 S3 버킷명을 명시합니다.
+    bucketName: nuxt-lambda-a1
+
+    # Nuxt 의 S3 버킷과 연결되어 있는 클라우드프론트 주소를 명시합니다.
+    cdnPath: https://d2157zmsf88sw.cloudfront.net
+
+    # S3 에 몇번째 버전으로 명시될지를 패키지 정보에서 참조합니다.
+    version: v${file(./package.json):version}
+
+  # 서버리스 오프라인 설정을 명시합니다.
+  serverless-offline:
+
+    # 해당 람다 함수를 별개의 프로세스로 실행시킬지를 명시합니다.
+    useChildProcesses: true
+
+    # 스테이지 정보를 url 파라메터에서 강제하지 않습니다.
+    # ( 이 설정이 true 여야만 Nuxt 의 오프라인 테스트가 가능합니다. )
+    noPrependStageInUrl: true
