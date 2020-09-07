@@ -4,7 +4,7 @@
     <!-- 인덱스 페이지 설명 -->
     <div class="form">
       <span class="pr-3"> 🎉 </span>
-      <span class="info-block"> 넉스트 템플릿의 예시 페이지들이 아래 나열됩니다. #6</span>
+      <span class="info-block"> 넉스트 템플릿의 예시 페이지들이 아래 나열됩니다. #7</span>
     </div>
     <!-- 이동가능한 예시 페이지 목록 -->
     <div v-for="item in exampleList" :key="item.title">
