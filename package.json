@@ -12,9 +12,8 @@
     "lint": "eslint --fix --ext .js,.vue,.ts --ignore-path .gitignore .",
     "clean": "rm -rf .nuxt",
     "storybook": "start-storybook -p 6006 -s public",
-    "start:lambda": "NODE_ENV=production ts-node ./lambda/lambda-init && serverless offline start && rm -rf nuxt.config.js",
-    "build:lambda": "NODE_ENV=production ts-node ./lambda/lambda-init && serverless package && rm -rf nuxt.config.js",
-    "deploy:lambda": "NODE_ENV=production ts-node ./lambda/lambda-init && serverless deploy && rm -rf nuxt.config.js"
+    "build:lambda": "NODE_ENV=production ts-node ./lambda/lambda-init && serverless package -c ./lambda/serverless.yml && rm -rf nuxt.config.js",
+    "deploy:lambda": "NODE_ENV=production ts-node ./lambda/lambda-init && serverless deploy -c ./lambda/serverless.yml && rm -rf nuxt.config.js"
   },
   "dependencies": {
     "@nuxt/components": "^1.1.0",
@@ -98,7 +97,6 @@
     "sass-loader": "^10.0.1",
     "serverless": "^1.80.0",
     "serverless-nuxt-plugin": "file:lambda/serverless-nuxt-plugin",
-    "serverless-offline": "^6.7.0",
     "serverless-webpack": "^5.3.4",
     "stylelint": "^13.6.1",
     "stylelint-config-prettier": "^8.0.2",

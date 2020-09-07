@@ -50,9 +50,6 @@ plugins:
   # 백엔드의 설정파일들을 웹팩으로 번들링합니다.
   - serverless-webpack
 
-  # 람다 함수를 오프라인에서 테스트해볼 수 있게 해줍니다.
-  - serverless-offline
-
 
 # 람다 함수 패키지의 설정들을 명시합니다.
 package:
@@ -85,13 +82,3 @@ custom:
 
     # S3 에 몇번째 버전으로 명시될지를 패키지 정보에서 참조합니다.
     version: v${file(./package.json):version}
-
-  # 서버리스 오프라인 설정을 명시합니다.
-  serverless-offline:
-
-    # 해당 람다 함수를 별개의 프로세스로 실행시킬지를 명시합니다.
-    useChildProcesses: true
-
-    # 스테이지 정보를 url 파라메터에서 강제하지 않습니다.
-    # ( 이 설정이 true 여야만 Nuxt 의 오프라인 테스트가 가능합니다. )
-    noPrependStageInUrl: true

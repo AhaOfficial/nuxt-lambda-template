@@ -19,21 +19,36 @@ jobs:
 
     # 순서대로 작업을 실행시킵니다.
     steps:
-      - name: 🔮 깃허브 레포 클론
+      - name: 📦  깃허브 레포 클론
         uses: actions/checkout@v2
 
-      - name: 🔋 Node.js 설치 ${{ matrix.node-version }}
+      - name: 📦  Node.js 설치 ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: 📦 종속 패키지 설치
+      - name: 📦  종속 패키지 설치
         run: |
           npm install -g typescript ts-node
           npm i -g serverless
           npm ci
 
-      - name: 🚀 AWS 배포 시작
+      - name: 🚀  AWS 배포 시작
         run: |
           serverless config credentials --provider aws --key ${{ secrets.AWS_ACCESS_KEY_ID }} --secret ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           npm run deploy:lambda
+
+      - name: 🔮  CDN 갱신 (AWS Invalidation)
+        uses: actions/checkout@master
+        uses: awact/cloudfront-action@master
+          env:
+            # 무효화시킬 경로
+            SOURCE_PATH: {{ secrets.CLOUDFRONT_INVALIDATION_PATH }}
+
+            # S3 리전
+            AWS_REGION: ${{ secrets.CLOUDFRONT_S3_REGION }}
+
+            # 클라우드 프론트 ID
+            DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID }}
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
