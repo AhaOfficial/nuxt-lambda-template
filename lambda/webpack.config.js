@@ -1,13 +1,13 @@
 const fs = require('fs').promises
 const path = require('path')
+const vm = require('vm')
+const Module = require('module')
+const CopyPlugin = require('copy-webpack-plugin')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+
 const slsw = require('serverless-webpack')
 const glob = require('glob')
 const decomment = require('decomment')
-const vm = require('vm')
-
-const CopyPlugin = require('copy-webpack-plugin')
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
-const Module = require('module')
 
 /**
  * 프로젝트의 패키지 JSON 입니다.
@@ -37,7 +37,7 @@ const webpackPath = path.join(process.cwd(), '/.webpack')
  */
 const checkScriptSyntax = (source, filename) => {
   source = Module.wrap(source)
-  new vm.Script(source, { displayErrors: false, filename })
+  new vm.Script(source, { displayErrors: false, filename: filename })
 }
 
 /**

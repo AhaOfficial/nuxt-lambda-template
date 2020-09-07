@@ -2,6 +2,20 @@
   "name": "nuxt-template",
   "description": "Nuxt.js TypeScript project",
   "version": "1.0.0",
+  "scripts": {
+    "dev": "nuxt-ts",
+    "build": "nuxt-ts build --modern=server",
+    "build:report": "nuxt-ts build --modern=server --analyze",
+    "build:plain": "nuxt-ts build --modern=server --plain",
+    "start": "nuxt-ts start --modern=server",
+    "generate": "nuxt-ts build --target static && nuxt-ts export",
+    "lint": "eslint --fix --ext .js,.vue,.ts --ignore-path .gitignore .",
+    "clean": "rm -rf .nuxt",
+    "storybook": "start-storybook -p 6006 -s public",
+    "start:lambda": "NODE_ENV=production ts-node ./lambda/lambda-init && serverless offline start && rm -rf nuxt.config.js",
+    "build:lambda": "NODE_ENV=production ts-node ./lambda/lambda-init && serverless package && rm -rf nuxt.config.js",
+    "deploy:lambda": "NODE_ENV=production ts-node ./lambda/lambda-init && serverless deploy && rm -rf nuxt.config.js"
+  },
   "dependencies": {
     "@nuxt/components": "^1.1.0",
     "@nuxt/core-edge": "^2.15.0-26597854.60f68638",
@@ -30,20 +44,6 @@
     "vue-state-store": "^1.0.0",
     "vue-svg-inline-loader": "^1.5.0",
     "vue-svg-loader": "^0.16.0"
-  },
-  "scripts": {
-    "dev": "nuxt-ts",
-    "build": "nuxt-ts build --modern=server",
-    "build:report": "nuxt-ts build --modern=server --analyze",
-    "build:plain": "nuxt-ts build --modern=server --plain",
-    "start": "nuxt-ts start --modern=server",
-    "generate": "nuxt-ts build --target static && nuxt-ts export",
-    "lint": "eslint --fix --ext .js,.vue,.ts --ignore-path .gitignore .",
-    "clean": "rm -rf .nuxt",
-    "storybook": "start-storybook -p 6006 -s public",
-    "start:lambda": "NODE_ENV=production ts-node ./lambda/lambda-init && serverless offline -c lambda/serverless.yml start && rm -rf nuxt.config.js",
-    "build:lambda": "NODE_ENV=production ts-node ./lambda/lambda-init && serverless package -c lambda/serverless.yml && rm -rf nuxt.config.js",
-    "deploy:lambda": "NODE_ENV=production ts-node ./lambda/lambda-init && serverless deploy -c lambda/serverless.yml && rm -rf nuxt.config.js"
   },
   "devDependencies": {
     "@nuxt/builder-edge": "^2.15.0-26597854.60f68638",

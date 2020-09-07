@@ -22,5 +22,6 @@ sw.*
 
 # Serverless
 .serverless
+.webpack
 .webpackCache
 nuxt.config.js
