@@ -1,0 +1,30 @@
+name: Deploy master branch
+
+# 마스터 브런치에 변동이 생기면 자동 배포를 시작합니다.
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: deploy
+
+    # 최신 우분투를 사용합니다.
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # 빌드 시 노드 버전을 12번대로 사용합니다.
+        node-version: [12.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm run deploy:lambda
+      - name: serverless deploy
+        uses: serverless/github-action@master
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
