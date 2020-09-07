@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: |
-          npm install -g ts-node
+          npm install -g typescript ts-node
           npm run deploy:lambda
       - name: serverless deploy
         uses: serverless/github-action@master
