@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    name: deploy
+    name: AWS Lambda Deploy
 
     # 최신 우분투를 사용합니다.
     runs-on: ubuntu-latest
@@ -16,19 +16,24 @@ jobs:
       matrix:
         # 빌드 시 노드 버전을 12번대로 사용합니다.
         node-version: [12.x]
+
+    # 순서대로 작업을 실행시킵니다.
     steps:
-      - uses: actions/checkout@v2
-      - uses: bahmutov/npm-install@v1
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: 🔮 깃허브 레포 클론
+        uses: actions/checkout@v2
+
+      - name: 🔋 Node.js 설치 ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: |
+
+      - name: 📦 종속 패키지 설치
+        run: |
           npm install -g typescript ts-node
-      - name: serverless deploy
-        uses: serverless/github-action@master
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      - run: |
+          npm i -g serverless
+          npm ci
+
+      - name: 🚀 AWS 배포 시작
+        run: |
+          serverless config credentials --provider aws --key ${{ secrets.AWS_ACCESS_KEY_ID }} --secret ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           npm run deploy:lambda
